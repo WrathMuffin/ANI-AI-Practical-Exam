@@ -1,16 +1,31 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CameraAnimationController : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public Camera cam;
+    private Animator ani;
+
+    private void Start()
     {
-        
+        ani = cam.GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnCollisionEnter(Collision collision)
     {
-        
+        if (collision.gameObject.CompareTag("A"))
+        {
+            ani.SetTrigger("At A");
+        }
+
+        if (collision.gameObject.CompareTag("B"))
+        {
+            ani.SetTrigger("At B");
+        }
+
+        if (collision.gameObject.CompareTag("C"))
+        {
+            ani.SetTrigger("At C");
+        }
     }
 }
